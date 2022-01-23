@@ -1,4 +1,3 @@
-import expressWinston from 'express-winston'
 import winston, { transports, format } from 'winston'
 
 const logger = winston.createLogger({
@@ -20,7 +19,5 @@ const logger = winston.createLogger({
 		})
 	]
 })
-
-
 
 export default logger
