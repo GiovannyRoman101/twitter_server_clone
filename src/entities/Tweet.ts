@@ -1,8 +1,8 @@
 import { Entity, Column, PrimaryGeneratedColumn, BaseEntity, CreateDateColumn } from 'typeorm'
 
 @Entity()
-export class Tweet extends BaseEntity {
-	@PrimaryGeneratedColumn()
+class Tweet extends BaseEntity {
+	@PrimaryGeneratedColumn('uuid')
 	id!: number
 
 	@Column()
@@ -14,3 +14,5 @@ export class Tweet extends BaseEntity {
 	})
 	postTime!: Date
 }
+
+export default Tweet

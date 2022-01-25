@@ -1,16 +1,22 @@
-import { Entity, Column, PrimaryGeneratedColumn, BaseEntity } from 'typeorm'
+import { Entity, Column, PrimaryGeneratedColumn, BaseEntity, ManyToMany, JoinTable } from 'typeorm'
 
 @Entity()
-export class User extends BaseEntity {
-	@PrimaryGeneratedColumn()
+class User extends BaseEntity {
+	@PrimaryGeneratedColumn('uuid')
 	id!: number
 
-	@Column()
+	@Column({ type: 'varchar', unique: true })
 	username!: string
 
-	@Column()
+	@Column({ type: 'varchar', unique: true })
 	email!: string
+
+	@ManyToMany(() => User)
+	@JoinTable()
+	following!: User[]
 
 	@Column()
 	password!: string
 }
+
+export default User
