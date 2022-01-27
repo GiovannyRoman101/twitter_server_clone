@@ -9,7 +9,8 @@ function validateEnv(): void {
 		MYSQL_HOST: str(),
 		MYSQL_DATABASE: str(),
 		MYSQL_USER: str(),
-		MYSQL_PASSWORD: str()
+		MYSQL_PASSWORD: str(),
+		JWT_SECRET: str()
 	})
 }
 

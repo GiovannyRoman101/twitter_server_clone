@@ -6,4 +6,9 @@ const create = Joi.object({
 	password: Joi.string().required()
 })
 
-export default { create }
+const login = Joi.object({
+	email: Joi.string().required(),
+	password: Joi.string().required()
+})
+
+export default { create, login }
