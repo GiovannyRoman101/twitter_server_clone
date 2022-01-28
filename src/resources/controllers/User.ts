@@ -50,6 +50,7 @@ class UserController implements Controller {
 	private getUser = async (req: Request, res: Response, next: NextFunction): Promise<Response | void> => {
 		try {
 			console.log(res.locals.user)
+			return res.status(200).json({})
 		} catch (error) {
 			next(new HttpException(500, 'Something went wrong'))
 		}
@@ -64,9 +65,22 @@ class UserController implements Controller {
 		}
 	}
 
-	// private postTweet = async (req: Request, res: Response, next: NextFunction): Promise<Response | void> => {
+	private postTweet = async (req: Request, res: Response, next: NextFunction): Promise<Response | void> => {
+		try {
+			const { message } = req.body
+			const tweet = await this.UserService.createTweet(res.locals.user, message)
+			res.status(201).json({ tweet })
+		} catch (error) {
+			next(new HttpException(400, `Cannot create a tweet`))
+		}
+	}
+
+	// private addToFollowing = async (req: Request, res: Response, next: NextFunction): Promise<Response | void> => {
 	// 	try {
-	// 		const { } = req.body
+	// 		const { follower_id } = req.body
+	// 		const user_id = res.locals.user
+	// 		const user = await this.UserService(user_id, follower_id)
+	// 		res.status()
 	// 	} catch (error) {
 	// 		next(new HttpException(400, `Cannot create a tweet`))
 	// 	}

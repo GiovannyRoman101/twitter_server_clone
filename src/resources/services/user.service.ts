@@ -1,4 +1,5 @@
-import User from '../../entities/User'
+import User from '@/entities/User'
+import Tweet from '@/entities/Tweet'
 import bcrypt from 'bcryptjs'
 import jwt from 'jsonwebtoken'
 
@@ -34,6 +35,18 @@ class UserService {
 			}
 		} catch (error) {
 			throw new Error('Unable to accesss user')
+		}
+	}
+
+	public async createTweet(id: number, message: string): Promise<Tweet> {
+		try {
+			const tweet = new Tweet()
+			tweet.id = id
+			tweet.message = message
+			tweet.save()
+			return tweet
+		} catch (error) {
+			throw new Error('Unable to create Tweet')
 		}
 	}
 }
